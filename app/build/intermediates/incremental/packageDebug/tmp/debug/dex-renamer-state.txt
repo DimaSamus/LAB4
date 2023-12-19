@@ -1,4 +1,4 @@
-#Tue Dec 19 21:14:37 EET 2023
+#Tue Dec 19 21:42:23 EET 2023
 base.0=C\:\\Users\\dimas\\StudioProjects\\LAB4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\dimas\\StudioProjects\\LAB4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\dimas\\StudioProjects\\LAB4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex

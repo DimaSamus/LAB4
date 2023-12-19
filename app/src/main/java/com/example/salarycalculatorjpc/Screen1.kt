@@ -21,10 +21,18 @@ sealed class JobType {
 @Composable
 
 fun Screen1(onSalaryCalculated: (Float) -> Unit) {
-    var baseSalary by remember { mutableStateOf("") }
-    var experience by remember { mutableStateOf("") }
-    var efficiency by remember { mutableStateOf("") }
-    var jobType by remember { mutableStateOf<JobType>(JobType.Developer) }
+    var baseSalary by remember {
+        mutableStateOf("")
+    }
+    var experience by remember {
+        mutableStateOf("")
+    }
+    var efficiency by remember {
+        mutableStateOf("")
+    }
+    var jobType by remember {
+        mutableStateOf<JobType>(JobType.Developer)
+    }
 
     Column(
         modifier = Modifier
@@ -37,8 +45,12 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
 
         OutlinedTextField(
             value = baseSalary,
-            onValueChange = { baseSalary = it },
-            placeholder = { Text("Base Salary") },
+            onValueChange = {
+                baseSalary = it
+                            },
+            placeholder = {
+                Text("Base Salary")
+                          },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier
                 .fillMaxWidth()
@@ -47,8 +59,12 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
 
         OutlinedTextField(
             value = experience,
-            onValueChange = { experience = it },
-            placeholder = { Text("Experience") },
+            onValueChange = {
+                experience = it
+                            },
+            placeholder = {
+                Text("Experience")
+                          },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,13 +73,17 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
 
         when (jobType) {
             JobType.Developer -> {
-                // No additional fields
+
             }
             JobType.Designer -> {
                 OutlinedTextField(
                     value = efficiency,
-                    onValueChange = { efficiency = it },
-                    label = { Text("Efficiency (0-1)") },
+                    onValueChange = {
+                        efficiency = it
+                                    },
+                    label = {
+                        Text("Efficiency (0-1)")
+                            },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -72,7 +92,7 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
             }
         }
 
-        // Developer option
+
 
         Column(
             modifier = Modifier
@@ -84,12 +104,14 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically){
                 RadioButton(
                     selected = jobType == JobType.Developer,
-                    onClick = { jobType = JobType.Developer },
+                    onClick = {
+                        jobType = JobType.Developer
+                              },
                 )
                 Text("Developer")
             }
         }
-            // Designer option
+
 
         Column(
             modifier = Modifier
@@ -101,7 +123,9 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
                 ){
             RadioButton(
                 selected = jobType == JobType.Designer,
-                onClick = { jobType = JobType.Designer },
+                onClick = {
+                    jobType = JobType.Designer
+                          },
 
             )
             Text("Designer") }
@@ -109,7 +133,7 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                // Perform salary calculation
+
                 val calculatedSalary = calculateSalary(jobType, baseSalary.toFloat(), experience.toInt(), efficiency.toFloatOrNull())
                 onSalaryCalculated(calculatedSalary)
             },
@@ -123,7 +147,7 @@ fun Screen1(onSalaryCalculated: (Float) -> Unit) {
 }
 
 
-// Function to calculate salary based on input values
+
 private fun calculateSalary(jobType: JobType, baseSalary: Float, experience: Int, efficiency: Float?): Float {
     return when (jobType) {
         is JobType.Developer -> {
@@ -134,10 +158,14 @@ private fun calculateSalary(jobType: JobType, baseSalary: Float, experience: Int
             }
         }
         is JobType.Designer -> {
-            requireNotNull(efficiency) { "Efficiency must not be null for Designer" }
-            require(efficiency in 0f..1f) { "Efficiency must be between 0 and 1 for Designer" }
+            requireNotNull(efficiency) {
+                "Efficiency must not be null for Designer"
+            }
+            require(efficiency in 0f..1f) {
+                "Efficiency must be between 0 and 1 for Designer"
+            }
 
-            // Adding the fixed amount for the specified range of experience
+
             val baseSalaryWithBonus = when {
                 experience > 5 -> baseSalary * 1.2f + 500
                 experience in 2..4 -> baseSalary + 200
@@ -149,7 +177,7 @@ private fun calculateSalary(jobType: JobType, baseSalary: Float, experience: Int
     }
 }
 
-// Function to check if the "Get Salary" button should be enabled
+
 private fun isCalculateButtonEnabled(jobType: JobType, baseSalary: String, experience: String, efficiency: String): Boolean {
     return when (jobType) {
         is JobType.Developer -> true

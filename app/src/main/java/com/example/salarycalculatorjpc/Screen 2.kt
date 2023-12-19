@@ -16,12 +16,14 @@ import com.example.salarycalculatorjpc.ui.theme.SalaryCalculatorJPCTheme
 
 @Composable
 fun Screen2(salary: Double, onReturn: () -> Unit) {
-    var showTextResult by remember { mutableStateOf(true) }
+    var showTextResult by remember {
+        mutableStateOf(true)
+    }
 
     val imageResource = if (!showTextResult) {
-        R.drawable.bagofmoney // Replace with your actual image resource
+        R.drawable.money
     } else {
-        0 // 0 represents no image or a placeholder
+        0
     }
 
     Column(
@@ -58,7 +60,7 @@ fun Screen2(salary: Double, onReturn: () -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
         if (!showTextResult) {
-            // Making the image clickable with the same action as resultText
+
             Box(
                 modifier = Modifier
                     .clickable {
@@ -68,7 +70,7 @@ fun Screen2(salary: Double, onReturn: () -> Unit) {
                 Image(
                     painter = painterResource(imageResource),
                     contentDescription = null,
-                    modifier = Modifier.size(72.dp)
+                    modifier = Modifier.size(80.dp)
                 )
             }
         }
